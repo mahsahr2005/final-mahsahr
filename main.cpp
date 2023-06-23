@@ -1,51 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
-class manager {
-public:
-    string username;
-    string password;
-    bool login() {
-        ifstream file;
-        file.open("password.txt",ios::app);
-        if (file.is_open()){
-            string user,pass;
-            while (!file.eof()) {
-                file >> user >> pass;
-                if (this->username==user && this->password == pass) {
-                    return true;
-                }
-            }
-            file.close();
-
-        }
-        return false;
-    }
-    bool signup(){
-       ofstream file;
-       file.open("password.txt",ios::app);
-       if (file.is_open()){
-           file << this->username << endl;
-           file << this->password << endl;
-           return true;
-       }
-       file.close();
-       return false;
-    }
-    bool usernames(){
-        ifstream file;
-        file.open("password.txt");
-        if (file.is_open()){
-            string user;
-            while (!file.eof()){
-                file >> user;
-                if (this->username==user)
-                    return false;
-            }
-        }
-        file.close();
-        return true;
 using namespace std;
+void sep(){
+    system("Color 07");
+    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+}
 class booknode{
 public:
     string name;
@@ -76,6 +36,53 @@ public:
         ofstream out;
         out.open("exchange.txt");
         out << dolar << endl << eur << endl;
+    }
+};
+class manager {
+public:
+    string username;
+    string password;
+    bool login() {
+        ifstream file;
+        file.open("password.txt",ios::app);
+        if (file.is_open()){
+            string user,pass;
+            while (!file.eof()) {
+                file >> user >> pass;
+                if (this->username==user && this->password == pass) {
+                    return true;
+                }
+            }
+            file.close();
+
+        }
+        return false;
+    }
+
+    bool signup(){
+       ofstream file;
+       file.open("password.txt",ios::app);
+       if (file.is_open()){
+           file << this->username << endl;
+           file << this->password << endl;
+           return true;
+       }
+       file.close();
+       return false;
+    }
+    bool usernames(){
+        ifstream file;
+        file.open("password.txt");
+        if (file.is_open()){
+            string user;
+            while (!file.eof()){
+                file >> user;
+                if (this->username==user)
+                    return false;
+            }
+        }
+        file.close();
+        return true;
     }
 };
 class booklist : public exchange{
@@ -251,11 +258,6 @@ public:
         remove("temp.csv");
     }
 };
-int main() {
-void sep(){
-    system("Color 07");
-    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-}
 bool thirdpage();
 bool firstpage(){
     system("Color 07");
@@ -511,6 +513,6 @@ bool thirdpage() {
     }
     return false;
 }
-int main() {
+int main(){
     firstpage();
 }
